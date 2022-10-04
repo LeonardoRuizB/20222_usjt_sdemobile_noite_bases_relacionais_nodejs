@@ -1,6 +1,9 @@
 const {
     Client
 } = require('pg')
+const express = require('express')
+const app = express()
+app.use(express.json())
 
 const client = new Client({
     user: '',
@@ -9,6 +12,14 @@ const client = new Client({
     password: '',
     port: '5432',
 });
+
+//GET http://localhost>3000/medicos
+app.get('', (req, res) => {
+    
+})
+
+app.listen(3000, () => console.log('Executando...'))
+
 
 teste = async () => {
     await client.connect()
