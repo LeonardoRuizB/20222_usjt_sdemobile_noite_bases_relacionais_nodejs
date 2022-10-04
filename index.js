@@ -8,14 +8,18 @@ app.use(express.json())
 const client = new Client({
     user: '',
     host: 'motty.db.elephantsql.com',
-    database: '',
+    database: '', //Esse e o User são os mesmos
     password: '',
     port: '5432',
 });
 
-//GET http://localhost>3000/medicos
-app.get('', (req, res) => {
-    
+//GET http://localhost:3000/medicos
+app.get('/medicos', async (req, res) => {
+    client.connect()
+    const { rows } = await client.query('SELECT * FROM tb_medicos')
+    console.log(rows)
+    res.send('Ok')
+
 })
 
 app.listen(3000, () => console.log('Executando...'))
